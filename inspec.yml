@@ -1,0 +1,10 @@
+name: MS_SQL_Server_2016_Instance_STIG
+title: MS_SQL_Server_2016_Instance_STIG
+maintainer: MITRE SAF Team
+copyright: MITRE, 2024
+copyright_email: saf@groups.mitre.org
+license: Apache-2.0
+summary: null
+description: null
+version: 2.11.0
+inspec_version: ">=4.0"
