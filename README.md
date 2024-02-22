@@ -1,8 +1,6 @@
-## Microsoft MS SQL 2016 Instance STIG InSpec Profile
+# [WIP] Microsoft MS SQL 2016 Instance STIG InSpec Profile
 
-WORK IN PROGRESS
-
-# microsoft-sql-server-2016-instance-stig-baseline
+## microsoft-sql-server-2016-instance-stig-baseline
 
 InSpec profile to validate the secure configuration of Microsoft SQL Server 2016 *Instance, against [DISA](https://iase.disa.mil/stigs/)'s Microsoft SQL Server 2016 Instance Security Technical Implementation Guide (STIG) Version 2, Release 11.
 
