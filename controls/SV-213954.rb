@@ -19,6 +19,7 @@ WorldwideImporters
 If any of these databases exist, this is a finding.'
   desc 'fix', 'Remove all demonstration or sample databases from production instances.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15171r313645_chk'
   tag severity: 'medium'
   tag gid: 'V-213954'

@@ -31,6 +31,7 @@ Consider enabling trace flag 3625 to mask certain system-level error information
  
 Launch SQL Server Configuration Manager >> Click SQL Services >> Open the instance properties >> Click the Service Parameters tab >> Enter "-T3625" >> Click Add >> Click OK >> Restart SQL instance.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15195r313717_chk'
   tag severity: 'medium'
   tag gid: 'V-213978'

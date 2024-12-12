@@ -16,6 +16,7 @@ If the SQL Server version is not shown as supported, this is a finding.
 If such evidence cannot be obtained, or the evidence that is obtained indicates a pattern of noncompliance, this is a finding.'
   desc 'fix', 'Upgrade SQL Server to the Microsoft-supported version.  Institute and adhere to policies and procedures to ensure that patches are consistently applied to SQL Server within the time allowed.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15211r917656_chk'
   tag severity: 'medium'
   tag gid: 'V-213994'
@@ -24,7 +25,13 @@ If such evidence cannot be obtained, or the evidence that is obtained indicates 
   tag gtitle: 'SRG-APP-000456-DB-000390'
   tag fix_id: 'F-15209r313766_fix'
   tag 'documentable'
-  tag legacy: ['SV-93955', 'V-79249']
+  tag legacy: ['SV-82403', 'V-67913', 'SV-93955', 'V-79249']
   tag cci: ['CCI-002605']
   tag nist: ['SI-2 c']
+
+  describe "Security-relevant software updates to SQL Server must be installed
+  within the time period directed by an authoritative source (e.g., IAVM, CTOs,
+  DTMs, and STIGs)." do
+    skip 'This control is manual'
+  end
 end

@@ -1,4 +1,4 @@
-control 'SV-259739' do
+control 'SV-265870' do
   title 'Microsoft SQL Server products must be a version supported by the vendor.'
   desc 'Unsupported commercial and database systems should not be used because fixes to newly identified bugs will not be implemented by the vendor. The lack of support can result in potential vulnerabilities.
 
@@ -27,18 +27,16 @@ https://learn.microsoft.com/en-us/lifecycle/products/sql-server-2016
 If the installed version or any of the software components are not supported by the vendor, this is a finding.'
   desc 'fix', 'Remove or decommission all unsupported software products.
 
-Upgrade unsupported DBMS or unsupported components to a supported version of the product. 
-
-More information can be found here:
-https://learn.microsoft.com/en-us/sql/sql-server/end-of-support/sql-server-end-of-support-overview?view=sql-server-ver16'
+Upgrade unsupported DBMS or unsupported components to a supported version of the product.'
   impact 0.7
-  tag check_id: 'C-54617r947235_chk'
+  ref 'DPMS Target MS SQL Server 2016 Instance'
+  tag check_id: 'C-69789r999514_chk'
   tag severity: 'high'
-  tag gid: 'V-259739'
-  tag rid: 'SV-259739r947237_rule'
+  tag gid: 'V-265870'
+  tag rid: 'SV-265870r999516_rule'
   tag stig_id: 'SQL6-D0-018300'
   tag gtitle: 'SRG-APP-000456-DB-000400'
-  tag fix_id: 'F-54571r947236_fix'
+  tag fix_id: 'F-69693r999515_fix'
   tag 'documentable'
   tag cci: ['CCI-003376']
   tag nist: ['SA-22 a']

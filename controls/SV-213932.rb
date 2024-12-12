@@ -14,8 +14,9 @@ Review the permissions actually in place on the server.
 If the actual permissions do not match the documented requirements, this is a finding. 
  
 Use the supplemental file "Instance permissions assignments to logins and roles.sql."'
-  desc 'fix', 'Use GRANT, REVOKE, DENY, ALTER SERVER ROLE … ADD MEMBER … and/or ALTER SERVER ROLE …. DROP MEMBER statements to add and remove permissions on server-level securables, bringing them into line with the documented requirements.'
+  desc 'fix', 'Use GRANT, REVOKE, DENY, ALTER SERVER ROLE … ADD MEMBER …  and/or  ALTER SERVER ROLE  …. DROP MEMBER statements to add and remove permissions on server-level securables, bringing them into line with the documented requirements.'
   impact 0.7
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15149r313579_chk'
   tag severity: 'high'
   tag gid: 'V-213932'
@@ -24,7 +25,11 @@ Use the supplemental file "Instance permissions assignments to logins and roles.
   tag gtitle: 'SRG-APP-000033-DB-000084'
   tag fix_id: 'F-15147r313580_fix'
   tag 'documentable'
-  tag legacy: ['SV-93831', 'V-79125']
+  tag legacy: ['SV-82251', 'V-67761', 'SV-93831', 'V-79125']
   tag cci: ['CCI-000213']
   tag nist: ['AC-3']
+
+  describe 'The Service Master Key must be backed up, stored offline and off-site.' do
+    skip 'This control is manual'
+  end
 end

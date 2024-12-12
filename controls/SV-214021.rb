@@ -12,6 +12,7 @@ If any audits are returned, review the associated filters to determine whether a
 If any audits are configured to exclude administrative activities, this is a finding.'
   desc 'fix', 'Check the system documentation for required SQL Server Audits. Remove any Audit filters that exclude or reduce required auditing. Update filters to ensure administrative activity is not excluded.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15238r313846_chk'
   tag severity: 'medium'
   tag gid: 'V-214021'

@@ -23,6 +23,7 @@ To disable a server network protocol for an instance:
 4. In the console pane, click "SQL Server Services". 
 5. In the details pane, right-click "SQL Server (<instance name>)", and then click "Restart", to stop and restart the SQL Server service.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15207r313753_chk'
   tag severity: 'medium'
   tag gid: 'V-213990'

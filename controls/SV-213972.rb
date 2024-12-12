@@ -38,6 +38,7 @@ To enable database encryption, create a master key, create a database encryption
 
 Implement physical security measures, operating system access control lists and organizational controls appropriate to the sensitivity level of the data in the database(s).'
   impact 0.7
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15189r313699_chk'
   tag severity: 'high'
   tag gid: 'V-213972'

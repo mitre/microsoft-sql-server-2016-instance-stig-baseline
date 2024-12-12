@@ -54,6 +54,7 @@ For clustered instances install the certificate after setting "Force Encryption"
 
 6. Repeat this procedure on all the nodes.'
   impact 0.7
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15183r754610_chk'
   tag severity: 'high'
   tag gid: 'V-213966'

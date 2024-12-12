@@ -14,6 +14,7 @@ If any stored procedures are returned that are not documented, this is a finding
 
 sp_procoption @procname = '<procedure name>', @OptionName = 'Startup', @optionValue = 'Off'"
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15247r313873_chk'
   tag severity: 'medium'
   tag gid: 'V-214030'

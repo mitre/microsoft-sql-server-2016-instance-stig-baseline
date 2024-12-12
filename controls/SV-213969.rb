@@ -22,6 +22,7 @@ https://support.microsoft.com/en-us/kb/955720'
  
 In the dialog box that appears, if the radio buttons are active, click "Enabled", and then click "Apply". If the radio buttons are grayed out, use Group Policy Management (on the appropriate server for this domain) to enforce the Enabled policy, and deploy it to the server(s) running SQL Server.'
   impact 0.7
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15186r822463_chk'
   tag severity: 'high'
   tag gid: 'V-213969'
@@ -30,7 +31,12 @@ In the dialog box that appears, if the radio buttons are active, click "Enabled"
   tag gtitle: 'SRG-APP-000179-DB-000114'
   tag fix_id: 'F-15184r822464_fix'
   tag 'documentable'
-  tag legacy: ['SV-93905', 'V-79199']
-  tag cci: ['CCI-000803']
-  tag nist: ['IA-7']
+  tag legacy: ['SV-82361', 'V-67871', 'SV-93905', 'V-79199']
+  tag cci: ['CCI-000803', 'CCI-002450']
+  tag nist: ['IA-7', 'SC-13 b']
+
+  describe registry_key('HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Lsa\\FIPSAlgorithmPolicy') do
+    it { should have_property 'Enabled' }
+    its('Enabled') { should cmp == 1 }
+  end
 end

@@ -44,6 +44,7 @@ Relocate or reinstall other application software that currently shares directori
  
 Separate from the operating system and/or temporary storage.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15170r313642_chk'
   tag severity: 'medium'
   tag gid: 'V-213953'
@@ -52,7 +53,13 @@ Separate from the operating system and/or temporary storage.'
   tag gtitle: 'SRG-APP-000133-DB-000199'
   tag fix_id: 'F-15168r313643_fix'
   tag 'documentable'
-  tag legacy: ['SV-93875', 'V-79169']
+  tag legacy: ['SV-82303', 'V-67813', 'SV-93875', 'V-79169']
   tag cci: ['CCI-001499']
   tag nist: ['CM-5 (6)']
+
+  describe "Database software directories, including SQL Server configuration
+  files, must be stored in dedicated directories, separate from the host OS and
+  other applications." do
+    skip 'Control is manual'
+  end
 end

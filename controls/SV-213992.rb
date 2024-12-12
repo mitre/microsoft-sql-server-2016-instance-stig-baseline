@@ -14,6 +14,7 @@ For standalone, domain-joined servers, consider using managed service accounts. 
  
 For clustered instances, consider using group managed service accounts. See https://msdn.microsoft.com/en-us/library/ms143504.aspx#GMSA or https://blogs.msdn.microsoft.com/markweberblog/2016/05/25/group-managed-service-accounts-gmsa-and-sql-server-2016/ for more information.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15209r313759_chk'
   tag severity: 'medium'
   tag gid: 'V-213992'

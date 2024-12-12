@@ -61,6 +61,7 @@ Set the telemetry service to start automatically. Restart the service.
 - For Database Engine, use SQL Server CEIP service (<INSTANCENAME>). 
 - For Analysis Services, use SQL Server Analysis Services CEIP (<INSTANCENAME>).'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15244r313864_chk'
   tag severity: 'medium'
   tag gid: 'V-214027'

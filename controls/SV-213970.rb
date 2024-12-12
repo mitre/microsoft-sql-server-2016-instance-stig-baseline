@@ -20,6 +20,7 @@ If the documentation indicates that this is a public-facing, read-only (from the
 If non-organizational users are not uniquely identified and authenticated, this is a finding."
   desc 'fix', 'Ensure all logins are uniquely identifiable and authenticate all non-organizational users who log onto the system. This likely would be done via a combination of the operating system with unique accounts and the SQL Server by ensuring mapping to individual accounts. Verify server documentation to ensure accounts are documented and unique.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15187r313693_chk'
   tag severity: 'medium'
   tag gid: 'V-213970'
@@ -28,7 +29,11 @@ If non-organizational users are not uniquely identified and authenticated, this 
   tag gtitle: 'SRG-APP-000180-DB-000115'
   tag fix_id: 'F-15185r313694_fix'
   tag 'documentable'
-  tag legacy: ['SV-93907', 'V-79201']
+  tag legacy: ['SV-82363', 'V-67873', 'SV-93907', 'V-79201']
   tag cci: ['CCI-000804']
   tag nist: ['IA-8']
+
+  describe 'The Service Master Key must be backed up, stored offline and off-site.' do
+    skip 'This controls is manual'
+  end
 end

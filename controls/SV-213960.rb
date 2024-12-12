@@ -28,6 +28,7 @@ To remove a login from a linked server run the following:
  
 EXEC sp_droplinkedsrvlogin 'LoginName', NULL;"
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15177r313663_chk'
   tag severity: 'medium'
   tag gid: 'V-213960'

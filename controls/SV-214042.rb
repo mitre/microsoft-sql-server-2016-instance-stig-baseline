@@ -20,6 +20,7 @@ Where SQL Server Browser is judged unnecessary, the Service can be disabled.
 
 To disable, in the Services tool, double-click "SQL Server Browser". Set "Startup Type" to "Disabled". If "Service Status" is "Running", click on "Stop". Click on "OK".'
   impact 0.3
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15259r313909_chk'
   tag severity: 'low'
   tag gid: 'V-214042'

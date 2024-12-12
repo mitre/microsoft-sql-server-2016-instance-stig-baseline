@@ -29,6 +29,7 @@ WHERE status_desc = 'STARTED'
  
 Ensure the SQL STIG Audit is configured to initiate session auditing upon startup."
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15157r313603_chk'
   tag severity: 'medium'
   tag gid: 'V-213940'

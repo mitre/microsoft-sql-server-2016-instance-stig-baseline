@@ -67,6 +67,7 @@ Note 2: Tips for adding a service SID/virtual account to a folder's permission l
 8) Click "OK".  
 9) Permission like a normal user from here.)
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15161r754588_chk'
   tag severity: 'medium'
   tag gid: 'V-213944'

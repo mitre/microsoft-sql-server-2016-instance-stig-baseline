@@ -38,6 +38,7 @@ WHERE a.is_state_enabled = 1
 Compare the documentation to the list of generated audit events. If there are any missing events, this is a finding."
   desc 'fix', 'Add all required audit events to the STIG Compliant audit specification server documentation.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15153r313591_chk'
   tag severity: 'medium'
   tag gid: 'V-213936'

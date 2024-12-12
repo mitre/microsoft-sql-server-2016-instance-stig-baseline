@@ -33,6 +33,7 @@ GO 
 RECONFIGURE; 
 GO??"
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15174r313654_chk'
   tag severity: 'medium'
   tag gid: 'V-213957'
@@ -41,7 +42,30 @@ GO??"
   tag gtitle: 'SRG-APP-000141-DB-000093'
   tag fix_id: 'F-15172r313655_fix'
   tag 'documentable'
-  tag legacy: ['SV-93883', 'V-79177']
+  tag legacy: ['SV-82347', 'V-67857', 'SV-93883', 'V-79177']
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
+
+  query = %(
+     EXEC sys.sp_configure N'xp_cmdshell';
+  )
+
+  sql_session = mssql_session(user: input('user'),
+                              password: input('password'),
+                              host: input('host'),
+                              instance: input('instance'),
+                              port: input('port'))
+
+  is_xp_cmdshell_required = input('is_xp_cmdshell_required')
+
+  describe.one do
+    describe 'Is xp cmdshell required' do
+      subject { is_xp_cmdshell_required }
+      it { should be true }
+    end
+    describe 'The xp_cmdshell config_value' do
+      subject { sql_session.query(query).column('config_value').uniq }
+      it { should cmp 0 }
+    end
+  end
 end

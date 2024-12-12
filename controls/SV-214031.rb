@@ -20,6 +20,7 @@ ALTER ENDPOINT <Endpoint Name>
 FOR DATABASE_MIRRORING
 (ENCRYPTION = REQUIRED ALGORITHM AES)'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15248r313876_chk'
   tag severity: 'medium'
   tag gid: 'V-214031'

@@ -50,6 +50,7 @@ Alternatively, enable "Both failed and successful logins"
 In SQL Management Studio: 
 Right-click on the instance >> Select "Properties" >> Select "Security" on the left hand side >> Select "Both failed and successful logins" >> Click "OK"'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15235r313837_chk'
   tag severity: 'medium'
   tag gid: 'V-214018'
@@ -58,7 +59,82 @@ Right-click on the instance >> Select "Properties" >> Select "Security" on the l
   tag gtitle: 'SRG-APP-000506-DB-000353'
   tag fix_id: 'F-15233r313838_fix'
   tag 'documentable'
-  tag legacy: ['SV-94003', 'V-79297']
+  tag legacy: ['SV-82429', 'V-67939', 'SV-94003', 'V-79297']
   tag cci: ['CCI-000172']
   tag nist: ['AU-12 c']
+
+  server_trace_implemented = input('server_trace_implemented')
+  server_audit_implemented = input('server_audit_implemented')
+
+  sql_session = mssql_session(user: input('user'),
+                              password: input('password'),
+                              host: input('host'),
+                              instance: input('instance'),
+                              port: input('port'),
+                              db_name: input('db_name'))
+
+  query_traces = %(
+    SELECT * FROM sys.traces
+  )
+  query_trace_eventinfo = %(
+    SELECT DISTINCT(eventid) FROM sys.fn_trace_geteventinfo(%<trace_id>s);
+  )
+
+  query_audits_logout_group = %(
+    SELECT audited_result FROM sys.server_audit_specification_details WHERE audit_action_name = 'LOGOUT_GROUP'
+  )
+
+  query_audits_successful_login_group = %(
+    SELECT audited_result FROM sys.server_audit_specification_details WHERE audit_action_name = 'SUCCESSFUL_LOGIN_GROUP'
+  )
+
+  describe.one do
+    describe 'SQL Server Trace is in use for audit purposes' do
+      subject { server_trace_implemented }
+      it { should be true }
+    end
+
+    describe 'SQL Server Audit is in use for audit purposes' do
+      subject { server_audit_implemented }
+      it { should be true }
+    end
+  end
+
+  query_traces = %(
+    SELECT * FROM sys.traces
+  )
+
+  if server_trace_implemented
+    describe 'List defined traces for the SQL server instance' do
+      subject { sql_session.query(query_traces) }
+      it { should_not be_empty }
+    end
+
+    trace_ids = sql_session.query(query_traces).column('id')
+    describe.one do
+      trace_ids.each do |trace_id|
+        found_events = sql_session.query(format(query_trace_eventinfo, trace_id: trace_id)).column('eventid')
+        describe "EventsIDs in Trace ID:#{trace_id}" do
+          subject { found_events }
+          it { should include '14' }
+          it { should include '15' }
+          it { should include '16' }
+          it { should include '17' }
+        end
+      end
+    end
+  end
+
+  if server_audit_implemented
+    describe 'SQL Server Audit:' do
+      describe 'Defined Audits with Audit name LOGOUT_GROUP' do
+        subject { sql_session.query(query_audits_logout_group) }
+        it { should_not be_empty }
+      end
+      describe 'Defined Audits with Audit name SUCCESSFUL_LOGIN_GROUP' do
+        subject { sql_session.query(query_audits_successful_login_group) }
+        it { should_not be_empty }
+      end
+    end
+  end
 end

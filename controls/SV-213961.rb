@@ -14,6 +14,7 @@ If Named Pipes is enabled and not specifically required and authorized, this is 
 If any listed protocol is enabled but not authorized, this is a finding.'
   desc 'fix', 'In SQL Server Configuration Manager >> SQL Server Network Configuration >> Protocols, right-click on each listed protocol that is enabled but not authorized and Select "Disable".'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15178r313666_chk'
   tag severity: 'medium'
   tag gid: 'V-213961'

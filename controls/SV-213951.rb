@@ -22,6 +22,7 @@ Using the Export-Clixml command (https://msdn.microsoft.com/powershell/reference
 
 Using the Compare-Object command (https://technet.microsoft.com/en-us/library/ee156812.aspx), a comparison of the latest baseline versus the original baseline can be used to expose the differences.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15168r313636_chk'
   tag severity: 'medium'
   tag gid: 'V-213951'

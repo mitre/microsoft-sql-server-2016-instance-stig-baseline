@@ -12,6 +12,7 @@ Alerts provide organizations with urgent messages. Real-time alerts provide thes
 If real-time alerts are not sent upon auditing failure, this is a finding.'
   desc 'fix', 'Configure the system to provide immediate real-time alerts to appropriate support staff when an audit log failure occurs.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15202r754630_chk'
   tag severity: 'medium'
   tag gid: 'V-213985'
@@ -20,7 +21,13 @@ If real-time alerts are not sent upon auditing failure, this is a finding.'
   tag gtitle: 'SRG-APP-000360-DB-000320'
   tag fix_id: 'F-15200r495408_fix'
   tag 'documentable'
-  tag legacy: ['SV-93937', 'V-79231']
+  tag legacy: ['SV-82385', 'V-67895', 'SV-93937', 'V-79231']
   tag cci: ['CCI-001858']
   tag nist: ['AU-5 (2)']
+
+  describe "SQL Server or software monitoring SQL Server must provide an immediate
+  real-time alert to appropriate support staff of all audit failure events
+  requiring real-time alerts." do
+    skip 'This control is manual'
+  end
 end

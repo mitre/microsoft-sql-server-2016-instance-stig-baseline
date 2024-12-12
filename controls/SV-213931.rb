@@ -96,6 +96,7 @@ Restart the SQL Server instance.
 More information regarding this process is available at:  
 https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections#Manual'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15148r754572_chk'
   tag severity: 'medium'
   tag gid: 'V-213931'

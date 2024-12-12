@@ -30,6 +30,7 @@ Ensure each user's identity is received and used in audit data in all relevant c
  
 Design, develop, and implement a method to log use of any account to which more than one person has access. Restrict interactive access to shared accounts to the fewest persons possible."
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15150r313582_chk'
   tag severity: 'medium'
   tag gid: 'V-213933'

@@ -25,6 +25,7 @@ USE [msdb]
 EXEC sp_delete_proxy @proxy_name = '<Proxy Name>' 
 GO"
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15197r313723_chk'
   tag severity: 'medium'
   tag gid: 'V-213980'

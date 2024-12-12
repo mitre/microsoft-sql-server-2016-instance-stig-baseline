@@ -23,6 +23,7 @@ HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Microsoft SQL Server\\[InstanceId]\\CPE
 HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Microsoft SQL Server\\130\\CustomerFeedback 
 HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Microsoft SQL Server\\130\\EnableErrorReporting'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15243r313861_chk'
   tag severity: 'medium'
   tag gid: 'V-214026'

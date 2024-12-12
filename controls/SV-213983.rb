@@ -23,6 +23,7 @@ Update the "max_files" parameter of the audits to ensure the correct number of f
 
 If writing to application event logs or security logs, space considerations are covered in the Windows Server STIGs. Be sure to reference these depending on the OS in use.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15200r799962_chk'
   tag severity: 'medium'
   tag gid: 'V-213983'
@@ -31,7 +32,12 @@ If writing to application event logs or security logs, space considerations are 
   tag gtitle: 'SRG-APP-000357-DB-000316'
   tag fix_id: 'F-15198r799963_fix'
   tag 'documentable'
-  tag legacy: ['SV-93933', 'V-79227']
+  tag legacy: ['V-67891', 'SV-82381', 'SV-93933', 'V-79227']
   tag cci: ['CCI-001849']
   tag nist: ['AU-4']
+
+  describe "SQL Server must allocate audit record storage capacity in accordance
+  with organization-defined audit record storage requirements." do
+    skip 'This control is manual'
+  end
 end

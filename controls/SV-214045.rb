@@ -10,7 +10,7 @@ This requirement is applicable when mixed-mode authentication is enabled.  When 
 
 SQLCMD and other command-line tools are part of any SQL Server installation. These tools can accept a plain-text password, but do offer alternative techniques. Since the typical user of these tools is a database administrator, the consequences of password compromise are particularly serious. Therefore, the use of plain-text passwords must be prohibited, as a matter of practice and procedure.'
   desc 'check', %q(Run this query to determine whether SQL Server authentication is enabled:
-EXEC master.sys.xp_loginconfig 'login mode'; 
+EXEC master.sys.xp_loginconfig 'login mode';
 
 If the config_value returned is "Windows NT Authentication", this is not a finding.
 
@@ -27,6 +27,7 @@ If mixed-mode authentication is necessary, then for SQLCMD, which cannot be conf
 1) Document the need for it, who uses it, and any relevant mitigations, and obtain AO approval.
 2) Train all users of the tool in the importance of not using the plain-text password option and in how to keep the password hidden."
   impact 0.7
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15262r313918_chk'
   tag severity: 'high'
   tag gid: 'V-214045'
@@ -35,7 +36,22 @@ If mixed-mode authentication is necessary, then for SQLCMD, which cannot be conf
   tag gtitle: 'SRG-APP-000178-DB-000083'
   tag fix_id: 'F-15260r313919_fix'
   tag 'documentable'
-  tag legacy: ['SV-94061', 'V-79355']
+  tag legacy: ['SV-82359', 'V-67869', 'SV-94061', 'V-79355']
   tag cci: ['CCI-000206']
   tag nist: ['IA-6']
+
+  query = %(
+  EXEC master.sys.xp_loginconfig 'login mode';
+  )
+
+  sql_session = mssql_session(user: input('user'),
+                              password: input('password'),
+                              host: input('host'),
+                              instance: input('instance'),
+                              port: input('port'))
+
+  describe 'The sql server authentication mode' do
+    subject { sql_session.query(query).column('config_value') }
+    it { should_not cmp 'Mixed' }
+  end
 end

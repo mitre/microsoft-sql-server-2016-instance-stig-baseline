@@ -1,10 +1,128 @@
-name: MS_SQL_Server_2016_Instance_STIG
-title: MS_SQL_Server_2016_Instance_STIG
+name: ms-sql-server-2016-instance-stig-baseline
+title: "MS SQL Server 2016 Instance Security Technical Implementation Guide ::
+  Version 3, Release 2 :: Benchmark Date:  24 Oct 2024"
 maintainer: MITRE SAF Team
-copyright: MITRE, 2024
+copyright: MITRE
 copyright_email: saf@groups.mitre.org
 license: Apache-2.0
-summary: null
+summary: InSpec profile aligned to STIG Guidance for MS SQL Server 2016 Instance
+  Security Technical Implementation Guide
 description: null
-version: 2.11.0
-inspec_version: ">=4.0"
+version: 3.2.0
+supports: []
+depends: []
+inspec_version: "~>6.0"
+
+
+### INPUTS ###
+# Inputs are variables that can be referenced by any control in the profile,
+# and are defined and given a default value in this file.
+
+# By default, each parameter is set to exactly comply with the profile baseline
+# wherever possible. Some profile controls will require a unique value reflecting
+# the necessary context for the supporting system.
+
+# Values provided here can be overridden using an input file or a CLI flag at
+# execution time. See InSpec's Inputs docs at https://docs.chef.io/inspec/profiles/inputs/
+# for details.
+
+# NOTE: DO NOT directly change the default values by editing this file. Use
+# overrides instead.
+###
+
+inputs:
+  # SV-213930, SV-213937, SV-213939, SV-213957, SV-213963, SV-213979, SV-213988
+  # SV-213989, SV-213995, SV-214000, SV-214008, SV-214014, SV-214015, SV-214016
+  # SV-214018, SV-214028, SV-214029, SV-214045
+  - name: user
+    description: 'username MSSQL DB Server'
+    value: null
+    sensitive: true
+
+  # SV-213930, SV-213937, SV-213939, SV-213957, SV-213963, SV-213979, SV-213988
+  # SV-213989, SV-213995, SV-214000, SV-214008, SV-214014, SV-214015, SV-214016
+  # SV-214018, SV-214028, SV-214029, SV-214045
+  - name: password
+    description: 'password MSSQL DB Server'
+    value: null
+    sensitive: true
+
+  # SV-213930, SV-213937, SV-213939, SV-213957, SV-213963, SV-213979, SV-213988
+  # SV-213989, SV-213995, SV-214000, SV-214008, SV-214014, SV-214015, SV-214016
+  # SV-214018, SV-214028, SV-214029, SV-214045
+  - name: host
+    description: 'hostname MSSQL DB Server'
+    value: null
+    sensitive: true
+
+  # SV-213930, SV-213937, SV-213939, SV-213957, SV-213963, SV-213979, SV-213988
+  # SV-213989, SV-213995, SV-214000, SV-214008, SV-214014, SV-214015, SV-214016
+  # SV-214018, SV-214028, SV-214029, SV-214045
+  - name: instance
+    description: 'instance name MSSQL DB Server'
+    value: null
+    sensitive: true
+
+  # SV-213930, SV-213937, SV-213939, SV-213957, SV-213963, SV-213979, SV-213988
+  # SV-213989, SV-213995, SV-214000, SV-214008, SV-214014, SV-214015, SV-214016
+  # SV-214018, SV-214028, SV-214029, SV-214045
+  - name: port
+    description: 'port MSSQL DB Server'
+    type: numeric
+    value: 1433
+
+  # SV-213989, SV-213995, SV-214000, SV-214008, SV-214014, SV-214015, SV-214016
+  # SV-214018
+  - name: db_name
+    description: 'name of the specific DB being evaluated within the MSSQL server'
+    type: string
+    value: 'master'
+
+  # SV-213939, SV-213989, SV-213995, SV-214000, SV-214008, SV-214014, SV-214015
+  # SV-214016, SV-214018
+  - name: server_trace_implemented
+    description: 'Set to true If SQL Server Trace is in use for audit purposes'
+    type: boolean
+    value: true
+
+  # SV-213939, SV-213989, SV-213995, SV-214000, SV-214008, SV-214014, SV-214015
+  # SV-214016, SV-214018
+  - name: server_audit_implemented
+    description: 'Set to true If SQL Server Audit is in use for audit purposes'
+    type: boolean
+    value: true
+
+  # SV-213930
+  - name: sql_managed_accounts
+    description: 'List of accounts managed by the sql server'
+    type: array
+    value: []
+
+  # SV-213937
+  - name: allowed_audit_permissions
+    description: 'List of users with audit permissions - ALTER ANY SERVER AUDIT, CONTROL SERVER, ALTER ANY DATABASE, CREATE ANY DATABASE'
+    type: array
+    value: []
+
+  # SV-213956
+  - name: sql_components
+    description: 'List of sql components installed'
+    type: array
+    value: []
+
+  # SV-213957
+  - name: is_xp_cmdshell_required
+    description: 'Set to true xp cmdshell is required'
+    type: boolean
+    value: false
+
+  # SV-213979
+  - name: allowed_users
+    description: 'List of user allowed to execute privileged functions'
+    type: array
+    value: []
+
+  - name: allowed_sql_alter_permissions
+    description: 'List of user with permissions -  ALTER ANY SERVER AUDIT, ALTER ANYDATABASE AUDIT, ALTER TRACE; or EXECUTE'
+    type: array
+    value: []

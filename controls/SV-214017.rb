@@ -101,6 +101,7 @@ GO
 ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = ON);  
 GO'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15234r313834_chk'
   tag severity: 'medium'
   tag gid: 'V-214017'

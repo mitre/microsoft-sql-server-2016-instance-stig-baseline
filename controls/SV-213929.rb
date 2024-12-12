@@ -56,6 +56,7 @@ END;
   
 Reference:  https://msdn.microsoft.com/en-us/library/ms189799.aspx"
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15146r799960_chk'
   tag severity: 'medium'
   tag gid: 'V-213929'

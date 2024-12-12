@@ -27,6 +27,7 @@ If the value of "Hidden" is "No" and the startup type of the "SQL Server Browser
 
 To hide the SQL instance, in SQL Server Configuration Manager, expand SQL Server Network Configuration, right-click Protocols for <server instance>, select "Properties", on the "Flags" tab, select "Yes" in the "HideInstance" box, then click "OK".  The change takes effect immediately for new connections.'
   impact 0.3
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15261r754689_chk'
   tag severity: 'low'
   tag gid: 'V-214044'

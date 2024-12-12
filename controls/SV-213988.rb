@@ -20,6 +20,7 @@ Check the server documentation to verify the users returned are authorized.
 If the users are not documented and authorized, this is a finding.'
   desc 'fix', 'Remove users from the local Administrators group who are not authorized.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15205r313747_chk'
   tag severity: 'medium'
   tag gid: 'V-213988'
@@ -28,7 +29,41 @@ If the users are not documented and authorized, this is a finding.'
   tag gtitle: 'SRG-APP-000380-DB-000360'
   tag fix_id: 'F-15203r313748_fix'
   tag 'documentable'
-  tag legacy: ['SV-93943', 'V-79237']
+  tag legacy: ['SV-82391', 'V-67901', 'SV-93943', 'V-79237']
   tag cci: ['CCI-001813']
   tag nist: ['CM-5 (1) (a)']
+
+  sql = mssql_session(user: input('user'),
+                      password: input('password'),
+                      host: input('host'),
+                      instance: input('instance'),
+                      port: input('port'))
+
+  get_server_permissions = sql.query("SELECT DISTINCT Grantee as 'result' FROM STIG.server_permissions WHERE Permission != 'CONNECT SQL';").column('result')
+  get_server_permissions.each do |server_perms|
+    a = server_perms.strip
+    describe "sql server permissions: #{a}" do
+      subject { a }
+      it { should be_in ALLOWED_SERVER_PERMISSIONS }
+    end
+  end
+
+  get_database_permissions = sql.query("SELECT DISTINCT Grantee as 'result' FROM STIG.database_permissions WHERE Permission LIKE '%CREATE%' OR Permission LIKE '%ALTER%' OR Permission IN ('CONTROL', 'INSERT', 'UPDATE', 'DELETE', 'EXECUTE');").column('result')
+  get_database_permissions.each do |database_perms|
+    a = database_perms.strip
+    describe a.to_s do
+      it { should be_in ALLOWED_DATABASE_PERMISSIONS }
+    end
+    describe "sql database permissions: #{a}" do
+      subject { a }
+      it { should be_in ALLOWED_DATABASE_PERMISSIONS }
+    end
+  end
+
+  if get_server_permissions.empty? || get_database_permissions
+    impact 0.0
+    describe 'There are no server or database permissions of concern configured' do
+      skip 'This control is not applicable'
+    end
+  end
 end

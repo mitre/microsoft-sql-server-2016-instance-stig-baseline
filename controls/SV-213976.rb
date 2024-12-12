@@ -12,6 +12,7 @@ Start >> Control Panel >> Administrative Tools >> Local Security Policy >> Local
 If the SQL Service SID (Default instance: NT SERVICE\\MSSQLSERVER. Named instance: NT SERVICE\\MSSQL$InstanceName) has been granted "Perform volume maintenance tasks" Local Rights Assignment and if it is not documented in the system documentation, this is a finding.'
   desc 'fix', 'If IFI is not documented as being required, disable instant file initialization for the instance of SQL Server by removing the SQL Service SID and/or service account from the "Perform volume maintenance tasks" Local Rights Assignment.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15193r313711_chk'
   tag severity: 'medium'
   tag gid: 'V-213976'

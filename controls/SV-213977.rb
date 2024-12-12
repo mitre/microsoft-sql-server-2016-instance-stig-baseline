@@ -33,6 +33,7 @@ If any additional permissions are granted but not documented as authorized, this
 1) On the "Security" tab, highlight the user entry.
 2) Click "Remove".'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15194r313714_chk'
   tag severity: 'medium'
   tag gid: 'V-213977'
@@ -41,7 +42,37 @@ If any additional permissions are granted but not documented as authorized, this
   tag gtitle: 'SRG-APP-000243-DB-000374'
   tag fix_id: 'F-15192r313715_fix'
   tag 'documentable'
-  tag legacy: ['SV-93921', 'V-79215']
+  tag legacy: ['SV-82371', 'V-67881', 'SV-93921', 'V-79215']
   tag cci: ['CCI-001090']
   tag nist: ['SC-4']
+
+  describe.one do
+    describe file('C:\\Program Files\\Microsoft SQL Server\\MSSQL12.MSSQLSERVER\\MSSQL\\Log') do
+      it { should be_allowed('full-control', by_user: 'CREATOR OWNER') }
+      it { should be_allowed('full-control', by_user: 'NT AUTHORITY\\SYSTEM') }
+      it { should be_allowed('full-control', by_user: 'BUILTIN\\Administrators') }
+      it { should be_allowed('full-control', by_user: 'NT SERVICE\\MSSQLSERVER') }
+    end
+    describe file('C:\\Program Files\\Microsoft SQL Server\\MSSQL12.MSSQLSERVER\\MSSQL\\Log') do
+      it { should be_allowed('full-control', by_user: 'CREATOR OWNER') }
+      it { should be_allowed('full-control', by_user: 'BUILTIN\\Administrators') }
+      it { should be_allowed('full-control', by_user: 'NT SERVICE\\MSSQLSERVER') }
+      it { should be_allowed('read', by_user: 'NT SERVICE\\SQLSERVERAGENT') }
+    end
+  end
+
+  describe.one do
+    describe file('C:\\Program Files\\Microsoft SQL Server\\MSSQL12.MSSQLSERVER\\MSSQL\\Log') do
+      it { should be_allowed('full-control', by_user: 'CREATOR OWNER') }
+      it { should be_allowed('full-control', by_user: 'BUILTIN\\Administrators') }
+      it { should be_allowed('full-control', by_user: 'NT SERVICE\\MSSQLSERVER') }
+    end
+    describe file('C:\\Program Files\\Microsoft SQL Server\\MSSQL12.MSSQLSERVER\\MSSQL\\Log') do
+      it { should be_allowed('full-control', by_user: 'CREATOR OWNER') }
+      it { should be_allowed('full-control', by_user: 'NT AUTHORITY\\SYSTEM') }
+      it { should be_allowed('full-control', by_user: 'BUILTIN\\Administrators') }
+      it { should be_allowed('full-control', by_user: 'NT SERVICE\\MSSQLSERVER') }
+      it { should be_allowed('read', by_user: 'NT SERVICE\\SQLSERVERAGENT') }
+    end
+  end
 end

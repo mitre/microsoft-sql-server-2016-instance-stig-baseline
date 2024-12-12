@@ -91,6 +91,7 @@ GO
  
 Use REVOKE and/or DENY and/or ALTER SERVER ROLE ... DROP MEMBER ... statements to remove CONTROL SERVER, ALTER ANY DATABASE and CREATE ANY DATABASE permissions from logins that do not need them.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15154r313594_chk'
   tag severity: 'medium'
   tag gid: 'V-213937'
@@ -99,7 +100,38 @@ Use REVOKE and/or DENY and/or ALTER SERVER ROLE ... DROP MEMBER ... statements t
   tag gtitle: 'SRG-APP-000090-DB-000065'
   tag fix_id: 'F-15152r313595_fix'
   tag 'documentable'
-  tag legacy: ['SV-93841', 'V-79135']
+  tag legacy: ['SV-82257', 'V-67767', 'SV-93841', 'V-79135']
   tag cci: ['CCI-000171']
   tag nist: ['AU-12 b']
+
+  sql = mssql_session(user: input('user'),
+                      password: input('password'),
+                      host: input('host'),
+                      instance: input('instance'),
+                      port: input('port'))
+  permissions = sql.query("SELECT Grantee as result FROM STIG.server_permissions P WHERE
+        P.[Permission] IN
+        (
+        'ALTER ANY SERVER AUDIT',
+        'CONTROL SERVER',
+        'ALTER ANY DATABASE',
+        'CREATE ANY DATABASE'
+        );").column('result')
+
+  if  permissions.empty?
+    impact 0.0
+    desc 'There are no users with audit permissions, control not applicable'
+
+    describe 'There are no users with audit permissions, control not applicable' do
+      skip 'There are no users with audit permissions, control not applicable'
+    end
+  else
+    permissions.each do |perms|
+      a = perms.strip
+      describe "sql audit permissions: #{a}" do
+        subject { a }
+        it { should be_in input('allowed_audit_permissions') }
+      end
+    end
+  end
 end

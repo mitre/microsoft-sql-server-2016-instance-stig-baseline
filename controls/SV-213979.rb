@@ -98,6 +98,7 @@ Ensure only the documented and approved logins have privileged functions in SQL 
 If the current configuration does not match the documented baseline, this is a finding."
   desc 'fix', 'Restrict the granting of permissions to server-level securables to only those authorized. Most notably, members of sysadmin and securityadmin built-in instance-level roles, CONTROL SERVER permission, and use of the GRANT with GRANT permission.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15196r313720_chk'
   tag severity: 'medium'
   tag gid: 'V-213979'
@@ -106,7 +107,32 @@ If the current configuration does not match the documented baseline, this is a f
   tag gtitle: 'SRG-APP-000340-DB-000304'
   tag fix_id: 'F-15194r313721_fix'
   tag 'documentable'
-  tag legacy: ['SV-93925', 'V-79219']
+  tag legacy: ['SV-82375', 'V-67885', 'SV-93925', 'V-79219']
   tag cci: ['CCI-002235']
   tag nist: ['AC-6 (10)']
+
+  sql = mssql_session(user: input('user'),
+                      password: input('password'),
+                      host: input('host'),
+                      instance: input('instance'),
+                      port: input('port'))
+  permissions = sql.query("SELECT Grantee as 'result' FROM STIG.database_permissions WHERE Permission LIKE '%CREATE%' OR Permission LIKE '%ALTER%'").column('result')
+
+  if  permissions.empty?
+    impact 0.0
+    desc 'There are no sql privileged users, control not applicable'
+
+    describe 'There are no sql privileged users, control not applicable' do
+      skip 'There are no sql privileged users, control not applicable'
+    end
+  else
+    permissions.each do |perms|
+      a = perms.strip
+      describe "sql privileged users: #{a}" do
+        subject { a }
+        it { should be_in input('allowed_users') }
+      end
+    end
+
+  end
 end

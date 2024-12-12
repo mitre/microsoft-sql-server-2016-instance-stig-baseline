@@ -20,6 +20,7 @@ ALTER ENDPOINT <EndpointName>
 FOR SERVICE_BROKER
 (ENCRYPTION = REQUIRED ALGORITHM AES)'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15249r313879_chk'
   tag severity: 'medium'
   tag gid: 'V-214032'

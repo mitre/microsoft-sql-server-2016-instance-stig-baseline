@@ -106,6 +106,7 @@ Disable unwanted SSL/TLS protocol versions:
 
 11.Repeat steps 1 – 10 for "TLS 1.1", "SSL 2.0", and "SSL 3.0".'
   impact 0.7
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15184r822460_chk'
   tag severity: 'high'
   tag gid: 'V-213967'

@@ -31,6 +31,7 @@ If no account information is returned, this is not a finding.
 If account information is returned, this is a finding.)
   desc 'fix', 'Remove all logins that were returned in the check content.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15152r313588_chk'
   tag severity: 'medium'
   tag gid: 'V-213935'

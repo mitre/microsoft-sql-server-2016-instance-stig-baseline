@@ -39,6 +39,7 @@ Ensure the DISA Windows Password Policy is set on the SQL Server member server.)
 
 CREATE LOGIN <login_name> WITH PASSWORD= <enterStrongPasswordHere>, CHECK_EXPIRATION = ON, CHECK_POLICY = ON;'
   impact 0.7
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15181r822458_chk'
   tag severity: 'high'
   tag gid: 'V-213964'

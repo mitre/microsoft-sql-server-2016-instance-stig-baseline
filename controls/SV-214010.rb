@@ -41,6 +41,7 @@ GO
  
 See the supplemental script "SQL 2016 Audit.sql" for complete script.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15227r902997_chk'
   tag severity: 'medium'
   tag gid: 'V-214010'

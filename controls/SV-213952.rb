@@ -15,6 +15,7 @@ If any accounts are shown that are not authorized in the system documentation, t
  
 Configure SQL Server and OS settings and access controls to restrict user access to objects and data that the user is authorized to view/use.'
   impact 0.7
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15169r822455_chk'
   tag severity: 'high'
   tag gid: 'V-213952'
@@ -23,7 +24,12 @@ Configure SQL Server and OS settings and access controls to restrict user access
   tag gtitle: 'SRG-APP-000133-DB-000198'
   tag fix_id: 'F-15167r822456_fix'
   tag 'documentable'
-  tag legacy: ['SV-93873', 'V-79167']
+  tag legacy: ['SV-82301', 'V-67811', 'SV-93873', 'V-79167']
   tag cci: ['CCI-001499']
   tag nist: ['CM-5 (6)']
+
+  describe "SQL Server software installation account(s) must be restricted to
+  authorized users" do
+    skip 'This is a manual check'
+  end
 end

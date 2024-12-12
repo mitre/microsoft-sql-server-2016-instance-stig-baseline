@@ -23,6 +23,7 @@ GO
 RECONFIGURE;  
 GO)
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15258r313906_chk'
   tag severity: 'medium'
   tag gid: 'V-214041'

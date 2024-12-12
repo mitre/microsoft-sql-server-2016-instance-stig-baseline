@@ -45,6 +45,7 @@ GO
  
 For any approved CLR code with Unsafe or External permissions, use the ALTER ASSEMBLY to change the Permission set for the Assembly and ensure a certificate is configured."
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15175r313657_chk'
   tag severity: 'medium'
   tag gid: 'V-213958'

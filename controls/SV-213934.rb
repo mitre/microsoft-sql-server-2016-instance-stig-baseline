@@ -40,6 +40,7 @@ GO
 
 To grant permissions to services or applications, utilize the Service SID of the service or a domain service account.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15151r313585_chk'
   tag severity: 'medium'
   tag gid: 'V-213934'

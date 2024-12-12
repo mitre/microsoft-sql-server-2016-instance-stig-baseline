@@ -16,6 +16,7 @@ EXEC sp_MSforeachdb 'USE [?]; SELECT DB_NAME() AS DatabaseName, * FROM sys.datab
 If any records are returned, this is a finding."
   desc 'fix', 'Configure the SQL Server contained databases to have users originating from Windows principals. Remove any users not created from Windows principals.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15182r313678_chk'
   tag severity: 'medium'
   tag gid: 'V-213965'

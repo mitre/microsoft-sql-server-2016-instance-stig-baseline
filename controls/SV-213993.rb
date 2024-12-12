@@ -14,6 +14,7 @@ Click Start >> Type "SQL Server 2016 Installation Center" >> Launch the program 
 Compare the feature listing against the required components listing. If any features are installed, but are not required, this is a finding.'
   desc 'fix', 'Remove all features that are not required.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15210r313762_chk'
   tag severity: 'medium'
   tag gid: 'V-213993'

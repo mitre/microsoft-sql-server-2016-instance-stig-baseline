@@ -24,6 +24,7 @@ Double-click "System cryptography: Use FIPS-compliant algorithms for encryption,
  
 Click Enabled >> Apply.'
   impact 0.7
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15185r863335_chk'
   tag severity: 'high'
   tag gid: 'V-213968'

@@ -14,6 +14,7 @@ To determine whether SQL Server is configured to use a fixed port or dynamic por
 If these are in conflict with PPSM guidance, and not explained and approved in the system documentation, this is a finding.'
   desc 'fix', 'Use SQL Server Configuration to change the ports used by SQL Server to comply with PPSM guidance, or document the need for other ports, and obtain written approval. Close ports no longer needed.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15179r313669_chk'
   tag severity: 'medium'
   tag gid: 'V-213962'

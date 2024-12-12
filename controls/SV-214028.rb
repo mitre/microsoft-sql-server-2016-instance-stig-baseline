@@ -23,6 +23,7 @@ GO
 ALTER LOGIN [sa] DISABLE; 
 GO"
   impact 0.7
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15245r822466_chk'
   tag severity: 'high'
   tag gid: 'V-214028'
@@ -31,7 +32,24 @@ GO"
   tag gtitle: 'SRG-APP-000033-DB-000084'
   tag fix_id: 'F-15243r313868_fix'
   tag 'documentable'
-  tag legacy: ['SV-94023', 'V-79317']
-  tag cci: ['CCI-000213']
-  tag nist: ['AC-3']
+  tag legacy: ['SV-82343', 'V-67853', 'SV-94023', 'V-79317']
+  tag cci: ['CCI-000381', 'CCI-000213']
+  tag nist: ['CM-7 a', 'AC-3']
+
+  query = %(
+    SELECT name, is_disabled
+     FROM sys.sql_logins
+     WHERE principal_id = 1 AND is_disabled != 1;
+  )
+
+  sql_session = mssql_session(user: input('user'),
+                              password: input('password'),
+                              host: input('host'),
+                              instance: input('instance'),
+                              port: input('port'))
+
+  describe 'The sa account in sys.sql_logs' do
+    subject { sql_session.query(query).column('name') }
+    it { should be_empty }
+  end
 end

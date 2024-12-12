@@ -12,6 +12,7 @@ If the system has a continuous network connection to the centralized log managem
 If the system does not have a continuous network connection to the centralized log management system, and the DBMS audit records are not transferred to the centralized log management system weekly or more often, this is a finding.'
   desc 'fix', 'Configure the system or deploy and configure software tools to transfer audit records to a centralized log management system, continuously and in near-real time where a continuous network connection to the log management system exists, or at least weekly in the absence of such a connection.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15242r313858_chk'
   tag severity: 'medium'
   tag gid: 'V-214025'
@@ -20,7 +21,14 @@ If the system does not have a continuous network connection to the centralized l
   tag gtitle: 'SRG-APP-000515-DB-000318'
   tag fix_id: 'F-15240r313859_fix'
   tag 'documentable'
-  tag legacy: ['SV-94017', 'V-79311']
+  tag legacy: ['SV-82431', 'V-67941', 'SV-94017', 'V-79311']
   tag cci: ['CCI-001851']
   tag nist: ['AU-4 (1)']
+
+  describe "SQL Server must off-load audit data to a separate log management
+  facility; this must be continuous and in near real time for systems with a
+  network connection to the storage facility and weekly or more often for
+  stand-alone systems." do
+    skip 'This control is manual'
+  end
 end

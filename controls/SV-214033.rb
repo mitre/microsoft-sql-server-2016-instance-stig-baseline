@@ -42,6 +42,7 @@ GO
 REVOKE EXECUTE ON [<procedureName>] FROM [<principal>]
 GO'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15250r313882_chk'
   tag severity: 'medium'
   tag gid: 'V-214033'

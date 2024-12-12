@@ -28,6 +28,7 @@ If the evidence indicates otherwise, this is a finding.'
  
 Where there is reason not to implement automatic synchronization with an official time server, using NTP, document the reason, and the procedure for maintaining the correct time, and obtain AO approval. Enforce the procedure.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15203r313741_chk'
   tag severity: 'medium'
   tag gid: 'V-213986'

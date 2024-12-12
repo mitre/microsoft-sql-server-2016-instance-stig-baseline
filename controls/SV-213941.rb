@@ -18,6 +18,7 @@ If any such requirement is not satisfied by the audit specification(s) (or by su
  
 Implement additional custom audits to capture the additional organizational required information.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15158r313606_chk'
   tag severity: 'medium'
   tag gid: 'V-213941'
@@ -26,7 +27,13 @@ Implement additional custom audits to capture the additional organizational requ
   tag gtitle: 'SRG-APP-000101-DB-000044'
   tag fix_id: 'F-15156r313607_fix'
   tag 'documentable'
-  tag legacy: ['SV-93851', 'V-79145']
+  tag legacy: ['SV-82273', 'V-67783', 'SV-93851', 'V-79145']
   tag cci: ['CCI-000135']
   tag nist: ['AU-3 (1)']
+
+  describe "SQL Server must include organization-defined additional, more detailed
+  information in Trace or Audit records for events identified by type, location,
+  or subject" do
+    skip 'This control is manual'
+  end
 end

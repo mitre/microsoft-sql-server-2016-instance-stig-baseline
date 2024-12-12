@@ -36,6 +36,7 @@ GO
 ALTER SERVER AUDIT [AuditName] WITH (STATE = ON);  
 GO'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15160r754586_chk'
   tag severity: 'medium'
   tag gid: 'V-213943'

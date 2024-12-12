@@ -14,6 +14,7 @@ If the Security Setting for this option is "Disabled", this is a finding.'
  
 Click Start >> Type "Local Security Policy" >> Press Enter >> Expand "Local Policies" >> Select "Security Options" >> Locate "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing." >> Change the Setting option to "Enabled" >> Restart Windows'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15188r313696_chk'
   tag severity: 'medium'
   tag gid: 'V-213971'

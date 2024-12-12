@@ -12,6 +12,7 @@ Database applications may allow for entry of the account name and password as a 
 If any do, determine whether these applications obfuscate authentication data; if they do not, this is a finding.'
   desc 'fix', 'Configure or modify applications to prohibit display of passwords in clear text.'
   impact 0.7
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15263r313921_chk'
   tag severity: 'high'
   tag gid: 'V-214046'
@@ -20,7 +21,13 @@ If any do, determine whether these applications obfuscate authentication data; i
   tag gtitle: 'SRG-APP-000178-DB-000083'
   tag fix_id: 'F-15261r313922_fix'
   tag 'documentable'
-  tag legacy: ['SV-94063', 'V-79357']
+  tag legacy: ['SV-82357', 'V-67867', 'SV-94063', 'V-79357']
   tag cci: ['CCI-000206']
   tag nist: ['IA-6']
+
+  describe "Applications must obscure feedback of authentication information
+  during the authentication process to protect the information from possible
+  exploitation/use by unauthorized individuals." do
+    skip 'This control is manual'
+  end
 end

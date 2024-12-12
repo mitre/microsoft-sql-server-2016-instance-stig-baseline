@@ -12,6 +12,7 @@ Monitoring of free space can be accomplished using Microsoft System Center or a 
 If no alert exist to notify support staff in the event the SQL Audit drive reaches 75%, this is a finding.'
   desc 'fix', 'Utilize operating system alerting mechanisms, SQL Agent, Operations Management tools, and/or third-party tools to configure the system to notify appropriate support staff immediately upon storage volume utilization reaching 75%.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15201r313735_chk'
   tag severity: 'medium'
   tag gid: 'V-213984'
@@ -20,7 +21,13 @@ If no alert exist to notify support staff in the event the SQL Audit drive reach
   tag gtitle: 'SRG-APP-000359-DB-000319'
   tag fix_id: 'F-15199r313736_fix'
   tag 'documentable'
-  tag legacy: ['SV-93935', 'V-79229']
+  tag legacy: ['SV-82383', 'V-67893', 'SV-93935', 'V-79229']
   tag cci: ['CCI-001855']
   tag nist: ['AU-5 (1)']
+
+  describe "SQL Server, the operating system, or the storage system must provide a
+  warning to appropriate support staff when allocated audit record storage volume
+  reaches 75% of maximum audit record storage capacity." do
+    skip 'This control is manual'
+  end
 end

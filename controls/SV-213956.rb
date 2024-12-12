@@ -22,6 +22,7 @@ If any components that are installed but are not required are not disabled, this
 If any required components are not installed, this is a finding.'
   desc 'fix', 'Disable any unused components or features that cannot be uninstalled.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15173r313651_chk'
   tag severity: 'medium'
   tag gid: 'V-213956'
@@ -30,7 +31,14 @@ If any required components are not installed, this is a finding.'
   tag gtitle: 'SRG-APP-000141-DB-000092'
   tag fix_id: 'F-15171r313652_fix'
   tag 'documentable'
-  tag legacy: ['SV-93881', 'V-79175']
+  tag legacy: ['SV-82341', 'V-67851', 'SV-93881', 'V-79175']
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
+
+  get_installed_components = command("Get-Service -Name '*SQL*' | select -expand name").stdout.strip.split("\r\n")
+
+  describe 'The list of installed sql components' do
+    subject { get_installed_components }
+    it { should match_array input('sql_components') }
+  end
 end

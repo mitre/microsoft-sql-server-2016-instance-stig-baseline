@@ -19,6 +19,7 @@ Configure applications to ensure successful individual authentication prior to s
  
 Ensure each user's identity is received and used in audit data in all relevant circumstances."
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15180r313672_chk'
   tag severity: 'medium'
   tag gid: 'V-213963'
@@ -27,7 +28,25 @@ Ensure each user's identity is received and used in audit data in all relevant c
   tag gtitle: 'SRG-APP-000148-DB-000103'
   tag fix_id: 'F-15178r313673_fix'
   tag 'documentable'
-  tag legacy: ['SV-93895', 'V-79189']
+  tag legacy: ['SV-82353', 'V-67863', 'SV-93895', 'V-79189']
   tag cci: ['CCI-000764']
   tag nist: ['IA-2']
+
+  query = %(
+  select name from master.sys.server_principals where is_disabled = 0;
+  )
+
+  sql_session = mssql_session(user: input('user'),
+                              password: input('password'),
+                              host: input('host'),
+                              instance: input('instance'),
+                              port: input('port'))
+
+  sql_users = sql_session.query(query).column('name')
+  sql_users.each do |user|
+    describe "authorized sql users: #{user}" do
+      subject { user }
+      it { should be_in input('authorized_sql_users') }
+    end
+  end
 end

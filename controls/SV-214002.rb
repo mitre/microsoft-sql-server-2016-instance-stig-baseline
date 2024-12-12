@@ -72,6 +72,7 @@ See the supplemental file "SQL 2016 Audit.sql".
 Reference: 
 https://msdn.microsoft.com/en-us/library/cc280663.aspx'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15219r902992_chk'
   tag severity: 'medium'
   tag gid: 'V-214002'

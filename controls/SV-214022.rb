@@ -14,6 +14,7 @@ Expand Local Policies >> Security Options.
 
 In the right-side pane, double-click on "System cryptography: Use FIPS compliant algorithms for encryption, hashing, and signing."'
   impact 0.7
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15239r313849_chk'
   tag severity: 'high'
   tag gid: 'V-214022'

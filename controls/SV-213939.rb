@@ -4,9 +4,7 @@ control 'SV-213939' do
  
 This requirement addresses explicit requests for privilege/permission/role membership information. It does not refer to the implicit retrieval of privileges/permissions/role memberships that SQL Server continually performs to determine if any and every action on the database is permitted. 
  
-To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones.
-
-'
+To aid in diagnosis, it is necessary to keep track of failed attempts in addition to the successful ones.'
   desc 'check', "Review the system documentation to determine if SQL Server is required to audit the retrieval of privilege/permission/role membership information. 
  
 If SQL Server is not required to audit the retrieval of privilege/permission/role membership information, this is not a finding. 
@@ -34,6 +32,7 @@ WHERE a.is_state_enabled = 1 AND d.audit_action_name = 'SCHEMA_OBJECT_ACCESS_GRO
 If the SCHEMA_OBJECT_ACCESS_GROUP is not returned in an active audit, this is a finding."
   desc 'fix', 'Deploy an audit to audit the retrieval of privilege/permission/role membership information. See the supplemental file "SQL 2016 Audit.sql".'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15156r313600_chk'
   tag severity: 'medium'
   tag gid: 'V-213939'
@@ -41,9 +40,48 @@ If the SCHEMA_OBJECT_ACCESS_GROUP is not returned in an active audit, this is a 
   tag stig_id: 'SQL6-D0-004600'
   tag gtitle: 'SRG-APP-000091-DB-000325'
   tag fix_id: 'F-15154r313601_fix'
-  tag satisfies: ['SRG-APP-000091-DB-000066']
   tag 'documentable'
-  tag legacy: ['SV-93845', 'V-79139']
+  tag legacy: ['SV-82261', 'V-67771', 'SV-93845', 'V-79139']
   tag cci: ['CCI-000172']
   tag nist: ['AU-12 c']
+
+  server_trace_implemented = input('server_trace_implemented')
+  server_audit_implemented = input('server_audit_implemented')
+
+  query = %(
+   SELECT audited_result
+    FROM   sys.server_audit_specification_details
+    WHERE  audit_action_name = 'SCHEMA_OBJECT_ACCESS_GROUP';
+    )
+  sql_session = mssql_session(user: input('user'),
+                              password: input('password'),
+                              host: input('host'),
+                              instance: input('instance'),
+                              port: input('port'))
+
+  describe.one do
+    describe 'SQL Server Trace is in use for audit purposes' do
+      subject { server_trace_implemented }
+      it { should be true }
+    end
+
+    describe 'SQL Server Audit is in use for audit purposes' do
+      subject { server_audit_implemented }
+      it { should be true }
+    end
+  end
+
+  if server_audit_implemented
+    describe 'SQL Server Audit:' do
+      describe 'Defined Audits with Audit Action SCHEMA_OBJECT_ACCESS_GROUP' do
+        subject { sql_session.query(query).column('server_specification_id') }
+        it { should_not be_empty }
+      end
+
+      describe 'Audited Result for Defined Audit Actions' do
+        subject { sql_session.query(query).column('audited_result').to_s }
+        it { should match(/SUCCESS AND FAILURE|FAILURE/) }
+      end
+    end
+  end
 end

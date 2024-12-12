@@ -29,6 +29,7 @@ USE master;
 DENY [ALTER ANY SERVER AUDIT] TO [User];   
 GO'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15165r902985_chk'
   tag severity: 'medium'
   tag gid: 'V-213948'

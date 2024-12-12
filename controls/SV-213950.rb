@@ -14,6 +14,7 @@ To determine the location for these instance-specific binaries, Launch SQL Serve
 Navigate to the folder above, and review the "Binn" subdirectory.)
   desc 'fix', 'Change the ownership of all shared software libraries on disk to the authorized account. Remove any modify permissions granted to unauthorized users or groups.'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15167r313633_chk'
   tag severity: 'medium'
   tag gid: 'V-213950'

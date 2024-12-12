@@ -41,6 +41,7 @@ WHERE a.is_state_enabled = 1 AND d.audit_action_name = 'SCHEMA_OBJECT_ACCESS_GRO
 If the "SCHEMA_OBJECT_ACCESS_GROUP" is not returned in an active audit, this is a finding.)
   desc 'fix', 'Deploy an audit to audit when successful and unsuccessful accesses to objects occur. See the supplemental file "SQL 2016 Audit.sql".'
   impact 0.5
+  ref 'DPMS Target MS SQL Server 2016 Instance'
   tag check_id: 'C-15237r903004_chk'
   tag severity: 'medium'
   tag gid: 'V-214020'
